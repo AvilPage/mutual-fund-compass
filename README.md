@@ -1,38 +1,20 @@
-# sv
+# Mutual Fund Compass
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+A simple web app to help you find the best mutual funds for your investment goals.
 
-## Creating a project
+[https://mutual-fund-compass.avilpage.com](https://mutual-fund-compass.avilpage.com)
 
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npx sv create
-
-# create a new project in my-app
-npx sv create my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+## Development - Frontend
 
 ```bash
-npm run dev
+git clone https://github.com/AvilPage/mutual-fund-compass
+cd mutual-fund-compass
+npm install 
 
 # or start the server and open the app in a new browser tab
 npm run dev -- --open
 ```
 
-## Building
-
-To create a production version of your app:
+## Development - Backend
 
 ```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
