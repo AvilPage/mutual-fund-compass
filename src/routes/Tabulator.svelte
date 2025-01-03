@@ -11,6 +11,8 @@
                 reactiveData: true, //enable data reactivity
                 columns: columns, //define table columns
                 layout: "fitColumns", //fit columns to width of table (optional)
+                initialFilter: [
+                ],
             }
         )
     })
