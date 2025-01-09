@@ -2,7 +2,6 @@
     import Header from "./Header.svelte";
     import {onMount} from "svelte";
     import mfs from "./data.json"
-    import Tabulator from "./Tabulator.svelte";
     import {ModuleRegistry} from 'ag-grid-community';
     import {SetFilterModule} from 'ag-grid-enterprise';
 
@@ -21,50 +20,26 @@
         "Mid Cap Fund": "Mid Cap Fund",
     }
 
-    let columns = [
-        {
-            title: "Name",
-            field: "Name",
-            headerFilter: true,
-        },
-        {
-            title: "Type",
-            field: "Type",
-        },
-        {
-            title: "Category",
-            field: "Category",
-            editorParams: {values: category_values},
-        },
-        {
-            title: "NAV",
-            field: "Value",
-        },
-        {
-            title: "Dividend",
-            field: "Dividend",
-        }
-    ];
-
-
     onMount(async () => {
         console.log(mfs);
         isLoading = false;
 
         //     load data from csv file
         const gridOptions = {
+            domLayout: "autoHeight",
             // Row Data: The data to be displayed.
             rowData: data,
             // Column Definitions: Defines the columns to be displayed.
             columnDefs: [
                 {
                     field: "Name",
-                    flex: 1.5,
+                    flex: 2,
                     filter: "agTextColumnFilter",
                     floatingFilter: true,
                 },
                 {
                     field: "Type",
+                    flex: 0.6,
                     filter: "agSetColumnFilter",
                     floatingFilter: true,
                 },
@@ -73,9 +48,28 @@
                     filter: "agSetColumnFilter",
                     floatingFilter: true,
                 },
-                {field: "Value"},
-                {field: "Dividend"},
+                {field: "expense_ratio"},
+                {
+                    field: "aum",
+                    flex: 0.6,
+                },
+                {
+                    field: "Value",
+                    flex: 0.6,
+                },
+                {
+                    field: "Dividend"
+                },
             ],
+            statusBar: {
+                statusPanels: [
+                    {statusPanel: 'agTotalAndFilteredRowCountComponent'},
+                    {statusPanel: 'agTotalRowCountComponent'},
+                    {statusPanel: 'agFilteredRowCountComponent'},
+                    {statusPanel: 'agSelectedRowCountComponent'},
+                    {statusPanel: 'agAggregationComponent'}
+                ]
+            },
         };
 
         // Your Javascript code to create the Data Grid
@@ -89,14 +83,42 @@
     <link href="https://unpkg.com/tabulator-tables@4.9.1/dist/css/tabulator.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/ag-grid-community/dist/ag-grid-community.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/ag-grid-enterprise@33.0.3/dist/ag-grid-enterprise.min.js"></script>
+    <style>
+        .ag-theme-alpine .ag-status-bar {
+            font-weight: normal;
+            position: absolute;
+            top: 50px;
+            right: 5px;
+            border-top: none !important;
+        }
+
+        .ag-theme-alpine .ag-body-viewport {
+            top: 50px;
+            border-top: solid 1px lightgrey;
+        }
+    </style>
+
 </svelte:head>
 
 <Header/>
 
-<div id="myGrid" style="height: 1000px; padding: 20px"></div>
-
-<!--<Tabulator {data} {columns}/>-->
+<div id="myGrid" style="width: 100%; height: 100%; padding: 20px"></div>
 
 {#if isLoading}
     <div>Loading...</div>
 {/if}
+
+<style>
+    .ag-theme-alpine .ag-status-bar {
+        font-weight: normal;
+        position: absolute;
+        top: 50px;
+        right: 5px;
+        border-top: none !important;
+    }
+
+    .ag-theme-alpine .ag-body-viewport {
+        top: 50px;
+        border-top: solid 1px lightgrey;
+    }
+</style>
