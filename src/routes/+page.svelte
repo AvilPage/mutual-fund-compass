@@ -26,20 +26,23 @@
 
         //     load data from csv file
         const gridOptions = {
+            // onGridReady: (event) => event.api.sizeColumnsToFit(),
+            // onGridReady: (event) => event.api.autoSizeAllColumns(),
+
             domLayout: "autoHeight",
             // Row Data: The data to be displayed.
             rowData: data,
+            suppressHorizontalScroll: false,
+            suppressVerticalScroll: false,
             // Column Definitions: Defines the columns to be displayed.
             columnDefs: [
                 {
                     field: "Name",
-                    flex: 2,
                     filter: "agTextColumnFilter",
                     floatingFilter: true,
                 },
                 {
                     field: "Type",
-                    flex: 0.6,
                     filter: "agSetColumnFilter",
                     floatingFilter: true,
                 },
@@ -51,11 +54,15 @@
                 {field: "expense_ratio"},
                 {
                     field: "aum",
-                    flex: 0.6,
+                },
+                {
+                    field: "year_1",
+                },
+                {
+                    field: "inception",
                 },
                 {
                     field: "Value",
-                    flex: 0.6,
                 },
                 {
                     field: "Dividend"
