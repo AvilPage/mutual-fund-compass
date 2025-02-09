@@ -28,7 +28,9 @@
         const gridOptions = {
             // onGridReady: (event) => event.api.sizeColumnsToFit(),
             // onGridReady: (event) => event.api.autoSizeAllColumns(),
-
+            // autoSizeStrategy: {
+            //     type: 'SizeColumnsToFitProvidedWidthStrategy'
+            // },
             domLayout: "autoHeight",
             // Row Data: The data to be displayed.
             rowData: data,
@@ -40,32 +42,49 @@
                     field: "Name",
                     filter: "agTextColumnFilter",
                     floatingFilter: true,
+                    width: 320,
+                    // flex: 0.5,
                 },
                 {
                     field: "Type",
                     filter: "agSetColumnFilter",
                     floatingFilter: true,
+                    width: 90,
                 },
                 {
                     field: "Category",
                     filter: "agSetColumnFilter",
                     floatingFilter: true,
+                    width: 150,
                 },
-                {field: "expense_ratio"},
+                {
+                    field: "expense_ratio",
+                    headerName: "Exp%",
+                    width: 100,
+
+                },
                 {
                     field: "aum",
+                    headerName: "AUM",
+                    width: 90,
                 },
                 {
                     field: "year_1",
+                    headerName: "1Y Ret",
+                    width: 120,
                 },
                 {
                     field: "inception",
+                    headerName: "Since Inception",
+                    width: 150,
                 },
                 {
                     field: "Value",
+                    width: 100,
                 },
                 {
-                    field: "Dividend"
+                    field: "Dividend",
+                    width: 150,
                 },
             ],
             statusBar: {
