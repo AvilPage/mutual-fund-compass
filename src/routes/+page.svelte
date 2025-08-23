@@ -70,7 +70,7 @@
                 },
                 {
                     field: "year_1",
-                    headerName: "1Y Ret",
+                    headerName: "1Y",
                     width: 120,
                 },
                 {
