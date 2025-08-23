@@ -3,9 +3,10 @@
     import {onMount} from "svelte";
     import mfs from "./data.json"
     import {ModuleRegistry} from 'ag-grid-community';
-    import {SetFilterModule} from 'ag-grid-enterprise';
+    import {SetFilterModule, ClientSideRowModelModule} from 'ag-grid-enterprise';
+    import { createGrid } from 'ag-grid-community';
 
-    ModuleRegistry.registerModules([SetFilterModule])
+    ModuleRegistry.registerModules([SetFilterModule, ClientSideRowModelModule])
 
     let isLoading = $state(true);
     let data = mfs;
@@ -15,10 +16,6 @@
             d.Dividend = "Growth";
         }
     });
-    let category_values = {
-        "Flexi Cap Fund": "Flexi Cap Fund",
-        "Mid Cap Fund": "Mid Cap Fund",
-    }
 
     onMount(async () => {
         console.log(mfs);
@@ -42,7 +39,7 @@
                     field: "Name",
                     filter: "agTextColumnFilter",
                     floatingFilter: true,
-                    width: 320,
+                    width: 450,
                     // flex: 0.5,
                 },
                 {
@@ -58,33 +55,38 @@
                     width: 150,
                 },
                 {
-                    field: "expense_ratio",
-                    headerName: "Exp%",
-                    width: 100,
+                    field: "Value",
+                    headerName: "NAV",
+                    width: 70,
+                    valueFormatter: function(params) { return (typeof params.value === 'number' ? params.value.toFixed(2) : params.value); },
+                },
 
+                {
+                    field: "expense_ratio",
+                    headerName: "TER",
+                    width: 70,
+                    valueFormatter: function(params) { return (typeof params.value === 'number' ? params.value.toFixed(2) : params.value); },
                 },
                 {
                     field: "aum",
-                    headerName: "AUM",
-                    width: 90,
+                    headerName: "AUM(Cr)",
+                    width: 100,
+                    valueFormatter: function(params) { return (typeof params.value === 'number' ? Math.round(params.value) : params.value); },
                 },
                 {
                     field: "year_1",
                     headerName: "1Y",
-                    width: 120,
+                    width: 70,
+                    valueFormatter: function(params) { return (typeof params.value === 'number' ? params.value.toFixed(2) : params.value); },
                 },
                 {
                     field: "inception",
-                    headerName: "Since Inception",
-                    width: 150,
-                },
-                {
-                    field: "Value",
-                    width: 100,
+                    headerName: "Max",
+                    width: 70,
+                    valueFormatter: function(params) { return (typeof params.value === 'number' ? params.value.toFixed(2) : params.value); },
                 },
                 {
                     field: "Dividend",
-                    width: 150,
                 },
             ],
             statusBar: {
@@ -100,15 +102,14 @@
 
         // Your Javascript code to create the Data Grid
         const myGridElement = document.querySelector('#myGrid');
-        agGrid.createGrid(myGridElement, gridOptions);
+        if (myGridElement) {
+            createGrid(myGridElement, gridOptions);
+        }
 
     });
 </script>
 
 <svelte:head>
-    <link href="https://unpkg.com/tabulator-tables@4.9.1/dist/css/tabulator.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/ag-grid-community/dist/ag-grid-community.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/ag-grid-enterprise@33.0.3/dist/ag-grid-enterprise.min.js"></script>
     <style>
         .ag-theme-alpine .ag-status-bar {
             font-weight: normal;
