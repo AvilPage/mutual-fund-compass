@@ -2,11 +2,9 @@
     import Header from "./Header.svelte";
     import {onMount} from "svelte";
     import mfs from "./data.json"
-    import {ModuleRegistry} from 'ag-grid-community';
-    import {SetFilterModule, ClientSideRowModelModule} from 'ag-grid-enterprise';
-    import { createGrid } from 'ag-grid-community';
+    import {createGrid, ModuleRegistry, SetFilterModule, ClientSideRowModelModule, StatusBarModule, TextFilterModule} from 'ag-grid-enterprise';
 
-    ModuleRegistry.registerModules([SetFilterModule, ClientSideRowModelModule])
+    ModuleRegistry.registerModules([SetFilterModule, ClientSideRowModelModule, StatusBarModule, TextFilterModule])
 
     let isLoading = $state(true);
     let data = mfs;
