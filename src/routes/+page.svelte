@@ -110,13 +110,14 @@
 <svelte:head>
     <style>
         .ag-theme-alpine .ag-status-bar {
+            order:-1;
             font-weight: normal;
             position: absolute;
             top: 50px;
             right: 5px;
             border-top: none !important;
         }
-
+        
         .ag-theme-alpine .ag-body-viewport {
             top: 50px;
             border-top: solid 1px lightgrey;
@@ -127,7 +128,7 @@
 
 <Header/>
 
-<div id="myGrid" style="width: 100%; height: 100%; padding: 20px"></div>
+<div id="myGrid" class="ag-theme-alpine" style="width: 100%; height: 100%; padding: 20px"></div>
 
 {#if isLoading}
     <div>Loading...</div>
