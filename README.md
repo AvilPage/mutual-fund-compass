@@ -1,20 +1,13 @@
 # Mutual Fund Compass
 
-A simple web app to help you find the best mutual funds for your investment goals.
+Searchable, sortable table of direct growth mutual funds.
 
-[https://mutual-fund-compass.avilpage.com](https://mutual-fund-compass.avilpage.com)
+https://mutual-fund-compass.avilpage.com
 
-## Development - Frontend
+Table built with [csvtotable](https://github.com/vividvilla/csvtotable).
+
+## Update
 
 ```bash
-git clone https://github.com/AvilPage/mutual-fund-compass
-cd mutual-fund-compass
-npm install 
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+uv run index.py   # fetch data, write index.csv + index.html, open in browser
 ```
-
-## Development - Backend
-
-```bash

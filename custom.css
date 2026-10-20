@@ -1,0 +1,46 @@
+/* Site bar (matches fund pages) */
+.site-bar {
+  background: #fcfcfb;
+  border-bottom: 1px solid #e4e3de;
+  margin-bottom: 8px;
+}
+.site-bar > div {
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.site-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  color: inherit;
+  text-decoration: none;
+}
+.site-brand img {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+}
+.site-bar nav {
+  margin-left: auto;
+  display: flex;
+  gap: 20px;
+  font-size: 0.9rem;
+}
+.site-bar nav a {
+  color: #52514e;
+  text-decoration: none;
+}
+@media (prefers-color-scheme: dark) {
+  .site-bar { background: #1a1a19; border-bottom-color: #2e2e2b; }
+  .site-bar nav a, .site-footer { color: #c3c2b7; }
+}
+.site-footer {
+  max-width: 1200px;
+  margin: 24px auto;
+  padding: 0 24px;
+  color: #7a7974;
+  font-size: 0.8rem;
+}
