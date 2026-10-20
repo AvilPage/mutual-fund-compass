@@ -261,6 +261,7 @@ def build_html(rows, html_path='index.html'):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('-v', '--verbose', action='store_true', help='log every API call')
+    parser.add_argument('--no-open', action='store_true', help='do not open index.html in the browser')
     args = parser.parse_args()
 
     logger.remove()
@@ -275,4 +276,5 @@ if __name__ == "__main__":
 
     rows = write_csv(funds)
     build_html(rows)
-    webbrowser.open(f'file://{os.path.abspath("index.html")}')
+    if not args.no_open:
+        webbrowser.open(f'file://{os.path.abspath("index.html")}')
